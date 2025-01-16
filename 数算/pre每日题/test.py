@@ -1,2 +1,4 @@
-a=0b1010
-b=bin(13)
+mark=[]
+mark+=' '
+mark+='?'
+print(mark)

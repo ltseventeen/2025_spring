@@ -68,3 +68,77 @@ def binary_search_right(arr, target):
 ```
 
 上述代码展示了如何用Python实现二分查找的不同版本。对于简单的情况，你可以直接使用这些函数。如果你需要处理更复杂的情况，例如处理重复元素或查找范围，你可能需要调整这些函数以满足你的需求。记住，使用`bisect`模块时，你需要确保输入的数组是已经排序的。
+
+
+
+## 找最大公因数和最小公倍数
+
+### 最大公因数（GCD）
+
+求两个数的最大公因数（Greatest Common Divisor, GCD）在Python中可以通过多种方式实现。最常用的方法是使用**辗转相除法**，也称为欧几里得算法。Python标准库中的**`math`模块提供了一个名为`gcd`的函数**可以直接用于计算最大公因数。
+
+下面是几种求解两个数的最大公因数的方法：
+
+#### 使用 math.gcd 函数
+
+这是最简单直接的方法：
+
+```python
+import math
+
+def find_gcd(x, y):
+    return math.gcd(x, y)
+
+# 示例
+x = 48
+y = 18
+print(f"The GCD of {x} and {y} is {find_gcd(x, y)}")
+```
+
+#### 使用欧几里得算法手动实现
+
+如果不想要使用内置函数，可以自己实现一个基于欧几里得算法的函数：
+
+```python
+def gcd_euclidean(x, y):
+    while(y):
+        x, y = y, x % y
+    return x
+
+# 示例
+x = 48
+y = 18
+print(f"The GCD of {x} and {y} is {gcd_euclidean(x, y)}")
+```
+
+==这段代码实现了欧几里得算法的核心思想：两个数a和b的最大公因数等于b和a%b（a除以b的余数）的最大公因数。==
+
+### 最小公倍数 (LCM)
+
+最小公倍数可以通过最大公因数来计算，因为==两数乘积等于这两个数的最大公因数与最小公倍数的乘积。==
+
+为了找到最小公倍数，我们可以先定义一个函数，这个函数将利用最大公因数来计算最小公倍数。公式为：`lcm(a, b) = abs(a*b) // gcd(a, b)`。
+
+```python
+def find_lcm(x, y):
+    return abs(x * y) // math.gcd(x, y)
+
+# 示例
+lcm_value = find_lcm(x, y)
+print(f"The LCM of {x} and {y} is {lcm_value}")
+```
+
+如果你想要在一个步骤中同时计算GCD和LCM，你可以这样做：
+
+```python
+def find_gcd_and_lcm(x, y):
+    gcd_val = math.gcd(x, y)
+    lcm_val = abs(x * y) // gcd_val
+    return gcd_val, lcm_val
+
+# 示例
+gcd_result, lcm_result = find_gcd_and_lcm(x, y)
+print(f"The GCD of {x} and {y} is {gcd_result}, and the LCM is {lcm_result}")
+```
+
+这段代码首先计算了两个数的最大公因数，然后用它来计算最小公倍数，并返回两者的结果。请确保输入的数值都是整数，因为这些操作对于浮点数可能会产生意外的结果。
