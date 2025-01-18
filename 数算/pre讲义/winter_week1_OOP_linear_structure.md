@@ -2435,7 +2435,7 @@ def find_middle_node(head):
         slow = slow.next
         fast = fast.next.next
     return slow
-#如果链表元素个数为偶数，slow会停在中间两个的节点靠前那个节点处；如果链表元素个数为奇数，slow会停在中间节点处
+#如果链表元素个数为偶数，slow会停在中间两个的节点靠后那个节点处；如果链表元素个数为奇数，slow会停在中间节点处
 ```
 
 

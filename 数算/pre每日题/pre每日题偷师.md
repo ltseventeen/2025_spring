@@ -69,6 +69,8 @@ def binary_search_right(arr, target):
 
 上述代码展示了如何用Python实现二分查找的不同版本。对于简单的情况，你可以直接使用这些函数。如果你需要处理更复杂的情况，例如处理重复元素或查找范围，你可能需要调整这些函数以满足你的需求。记住，使用`bisect`模块时，你需要确保输入的数组是已经排序的。
 
+------
+
 
 
 ## 找最大公因数和最小公倍数
@@ -142,3 +144,90 @@ print(f"The GCD of {x} and {y} is {gcd_result}, and the LCM is {lcm_result}")
 ```
 
 这段代码首先计算了两个数的最大公因数，然后用它来计算最小公倍数，并返回两者的结果。请确保输入的数值都是整数，因为这些操作对于浮点数可能会产生意外的结果。
+
+------
+
+
+
+## 检查字符串是否为数字
+
+### isdigit（）
+
+Python isdigit() 方法检测字符串是否只由数字组成。
+
+**语法**
+
+isdigit()方法语法：
+
+```
+str.isdigit()
+```
+
+**参数**
+
+- 无。
+
+**返回值**
+
+如果字符串只包含数字则返回 True 否则返回 False。
+
+**实例**
+
+```python
+\#!/usr/bin/python3
+
+str = "123456";
+**print** (str.isdigit())
+
+str = "Runoob example....wow!!!"
+**print** (str.isdigit())
+```
+
+以上实例输出结果如下：
+
+```
+True
+False
+```
+
+==isdigit() 方法只对正整数有效，负数及小数均返回不正确。==
+
+### 识别负数及小数
+
+```python
+# 判断是否为数字
+def is_number(s):        
+    try:    # 如果能运⾏ float(s) 语句，返回 True（字符串 s 是浮点数）                
+        float(s)                
+        return True        
+    except ValueError:  # ValueError 为 Python 的⼀种标准异常，表⽰"传⼊⽆效的参数"             
+        pass  # 如果引发了 ValueError 这种异常，不做任何事情（pass：不做任何事情，⼀般⽤做占位语句）
+    try:                
+        import unicodedata  # 处理 ASCII 码的包                
+        unicodedata.numeric(s)  # 把⼀个表⽰数字的字符串转换为浮点数返回的函数                
+        return True        
+    except (TypeError, ValueError):                
+        pass            
+    	return False
+    
+print(is_number(1)) 
+print(is_number(1.0)) 
+print(is_number(0)) 
+print(is_number(-2))
+print(is_number(-2.0))
+print(is_number("abc"))
+```
+
+输出结果为：
+
+```
+True
+True
+True
+True
+True
+False
+```
+
+------
+
